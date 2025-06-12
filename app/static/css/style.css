@@ -1,0 +1,145 @@
+/* --- Importação de Fontes para o Tema 'Fofo' --- */
+@import url('https://fonts.googleapis.com/css2?family=Pacifico&family=Poppins:wght@300;400;500;700&display=swap');
+
+/* --- Definição da Paleta de Cores --- */
+:root {
+    --lavander-blush: #FFF1F4;
+    --pale-pink:     #FFE1E6;
+    --azalea:        #F7C9D4;
+    --deco:          #C8DE9D;
+    --tidal:         #E0EEA3;
+    --text-dark:     #4d4244;
+    --white:         #ffffff;
+}
+
+/* --- Estilos Globais --- */
+body {
+    background-color: var(--lavander-blush);
+    font-family: 'Poppins', sans-serif;
+    color: var(--text-dark);
+}
+
+.brand-font, .login-heading {
+    font-family: 'Pacifico', cursive;
+}
+
+a {
+    color: var(--azalea);
+    font-weight: 500;
+    text-decoration: none;
+}
+
+a:hover {
+    color: #e4a9ba;
+}
+
+
+/* --- Componentes --- */
+.card {
+    border-radius: 1.25rem;
+    border: 1px solid var(--pale-pink);
+    background-color: var(--white);
+    box-shadow: 0 4px 20px rgba(0, 0, 0, 0.06);
+}
+
+.card-header {
+    background-color: transparent;
+    border-bottom: 1px solid var(--pale-pink);
+}
+
+.btn {
+    border-radius: 50rem;
+    padding: 0.75rem 1.5rem;
+    font-weight: 500;
+    border: none;
+    transition: all 0.3s ease;
+}
+
+.btn-primary {
+    background-color: var(--azalea);
+    color: var(--text-dark);
+}
+
+.btn-primary:hover {
+    background-color: #f5b8c7;
+    transform: translateY(-2px);
+    box-shadow: 0 4px 10px rgba(0,0,0,0.1);
+}
+
+.form-control {
+    border-radius: 0.75rem;
+    border: 1px solid var(--pale-pink);
+}
+
+.form-control:focus {
+    border-color: var(--azalea);
+    box-shadow: 0 0 0 0.25rem rgba(247, 201, 212, 0.5);
+}
+
+/* --- Barra de Navegação --- */
+.navbar.bg-dark {
+    background-color: var(--deco) !important; /* Fundo Verde */
+}
+
+.navbar-brand, .navbar-nav .nav-link {
+    color: var(--text-dark) !important;
+}
+
+.navbar-brand {
+    font-size: 1.8rem;
+}
+
+/* --- Página Index (Hero) --- */
+.hero-section {
+    background: linear-gradient(to right, var(--pale-pink), var(--tidal)); /* Fundo Rosa/Verde */
+    padding: 6rem 0;
+}
+
+.hero-section h1, .hero-section p {
+    color: var(--text-dark);
+}
+
+/* --- Página de Login/Cadastro --- */
+.login {
+  min-height: 100vh;
+}
+
+.bg-image {
+  background-image: url('https://images.unsplash.com/photo-1518621736915-f3b1c41bfd00?q=80&w=1964&auto=format&fit=crop');
+  background-size: cover;
+  background-position: center;
+}
+
+.login-heading {
+  color: var(--azalea);
+}
+
+.form-floating .form-control {
+    padding-left: 1.5rem;
+}
+
+.form-floating > label {
+    padding-left: 1.5rem;
+}
+
+/* --- Página de Perfil --- */
+.profile-picture {
+    width: 150px;
+    height: 150px;
+    object-fit: cover;
+}
+
+.profile-icon-placeholder {
+    font-size: 150px;
+    color: #eee;
+}
+
+.border-left-danger {
+    border-left: .25rem solid var(--azalea) !important;
+}
+
+/* --- Dashboard --- */
+.card .border-left-primary { border-left: .25rem solid var(--azalea) !important; }
+.card .border-left-warning { border-left: .25rem solid var(--tidal) !important; }
+.card .border-left-danger { border-left: .25rem solid #e6adaa !important; }
+.text-primary { color: var(--azalea) !important; }

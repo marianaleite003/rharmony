@@ -1,0 +1,107 @@
+{% extends 'base.html' %}
+{% block title %}Dashboard{% endblock %}
+
+{% block content %}
+<div class="d-flex justify-content-between flex-wrap flex-md-nowrap align-items-center pt-3 pb-2 mb-3 border-bottom">
+    <h1 class="h2">Dashboard</h1>
+</div>
+
+<div class="row">
+    <div class="col-xl-4 col-md-6 mb-4">
+        <div class="card border-left-primary shadow h-100 py-2">
+            <div class="card-body">
+                <div class="row no-gutters align-items-center">
+                    <div class="col mr-2">
+                        <div class="text-xs font-weight-bold text-primary text-uppercase mb-1">Gestores Ativos</div>
+                        <div class="h5 mb-0 font-weight-bold text-gray-800">{{ total_gestores }}</div>
+                    </div>
+                    <div class="col-auto">
+                        <i class="bi bi-people-fill h2 text-gray-300"></i>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <div class="col-xl-4 col-md-6 mb-4">
+        <div class="card border-left-warning shadow h-100 py-2">
+            <div class="card-body">
+                <div class="row no-gutters align-items-center">
+                    <div class="col mr-2">
+                        <div class="text-xs font-weight-bold text-warning text-uppercase mb-1">Docs. Perto de Vencer (30d)</div>
+                        <div class="h5 mb-0 font-weight-bold text-gray-800">{{ documentos_perto_vencer }}</div>
+                    </div>
+                    <div class="col-auto">
+                        <i class="bi bi-exclamation-triangle-fill h2 text-gray-300"></i>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <div class="col-xl-4 col-md-6 mb-4">
+        <div class="card border-left-danger shadow h-100 py-2">
+            <div class="card-body">
+                <div class="row no-gutters align-items-center">
+                    <div class="col mr-2">
+                        <div class="text-xs font-weight-bold text-danger text-uppercase mb-1">Documentos Vencidos</div>
+                        <div class="h5 mb-0 font-weight-bold text-gray-800">{{ documentos_vencidos }}</div>
+                    </div>
+                    <div class="col-auto">
+                        <i class="bi bi-file-earmark-excel-fill h2 text-gray-300"></i>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+
+<div class="row mt-2">
+    <div class="col-12">
+        <div class="card shadow-sm h-100">
+            <div class="card-header py-3">
+                <h5 class="m-0 font-weight-bold text-primary"><i class="bi bi-bell-fill me-2"></i>Alertas de Documentação da Frota</h5>
+            </div>
+            <div class="card-body">
+                {% if alertas %}
+                <div class="table-responsive">
+                    <table class="table table-sm table-hover">
+                        <thead>
+                            <tr>
+                                <th>Placa</th>
+                                <th>Documento</th>
+                                <th>Vencimento</th>
+                                <th>Status</th>
+                            </tr>
+                        </thead>
+                        <tbody>
+                            {% for veiculo in alertas %}
+                            <tr>
+                                <td><strong>{{ veiculo.placa }}</strong></td>
+                                <td>CRLV</td>
+                                <td>{{ veiculo.documento_vencimento.strftime('%d/%m/%Y') }}</td>
+                                <td>
+                                    {% if veiculo.documento_vencimento < hoje %}
+                                    <span class="badge bg-danger">Vencido</span>
+                                    {% else %}
+                                    <span class="badge bg-warning text-dark">Perto de Vencer</span>
+                                    {% endif %}
+                                </td>
+                            </tr>
+                            {% endfor %}
+                        </tbody>
+                    </table>
+                </div>
+                {% else %}
+                <div class="text-center py-4">
+                    <i class="bi bi-check-circle-fill h1 text-success"></i>
+                    <p class="mt-2 mb-0">Nenhum documento vencido ou próximo do vencimento. Ótimo trabalho!</p>
+                </div>
+                {% endif %}
+            </div>
+        </div>
+    </div>
+</div>
+
+
+{% endblock %}

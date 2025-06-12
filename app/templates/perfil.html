@@ -1,0 +1,59 @@
+{% extends 'base.html' %}
+{% block title %}Meu Perfil{% endblock %}
+{% block content %}
+<div class="row justify-content-center">
+    <div class="col-lg-10 col-xl-9">
+        <div class="card shadow-lg border-0 rounded-lg mb-4">
+            <div class="card-header bg-light py-3">
+                <h5 class="m-0 font-weight-bold text-primary"><i class="bi bi-person-circle me-2"></i>Meu Perfil</h5>
+            </div>
+            <div class="card-body p-4 p-md-5">
+                <div class="row">
+                    <div class="col-md-4 text-center border-end">
+                        <h6 class="text-muted mb-3">Foto de Perfil</h6>
+                        {% if foto_perfil %}
+                            <img src="{{ foto_perfil }}" alt="Foto de Perfil" class="img-fluid rounded-circle mb-3 profile-picture">
+                        {% else %}
+                            <i class="bi bi-person-circle profile-icon-placeholder"></i>
+                        {% endif %}
+                        <h4 class="mt-2 mb-0">{{ current_user.nome }}</h4>
+                        <p class="text-muted">{{ current_user.email }}</p>
+                    </div>
+                    <div class="col-md-8 ps-md-5">
+                        <h6 class="text-muted mb-3">Editar Informações</h6>
+                        <form method="POST" action="{{ url_for('main.perfil') }}" enctype="multipart/form-data" novalidate>
+                            {{ form.hidden_tag() }}
+                            <div class="mb-3">
+                                {{ form.nome.label(class="form-label") }}
+                                {{ form.nome(class="form-control") }}
+                            </div>
+                            <div class="mb-3">
+                                {{ form.email.label(class="form-label") }}
+                                {{ form.email(class="form-control") }}
+                            </div>
+                            <div class="mb-4">
+                                {{ form.foto.label(class="form-label") }}
+                                {{ form.foto(class="form-control") }}
+                            </div>
+                            <div class="d-grid">
+                                {{ form.submit(class="btn btn-primary", value="Salvar Alterações") }}
+                            </div>
+                        </form>
+                    </div>
+                </div>
+            </div>
+        </div>
+        <div class="card shadow-lg border-left-danger">
+            <div class="card-header py-3">
+                <h5 class="m-0 font-weight-bold text-danger"><i class="bi bi-exclamation-triangle-fill me-2"></i>Zona de Perigo</h5>
+            </div>
+            <div class="card-body">
+                <p>Ao excluir sua conta, todos os seus dados serão removidos permanentemente.</p>
+                <form action="{{ url_for('main.deletar_perfil') }}" method="POST" onsubmit="return confirm('ATENÇÃO! Você tem certeza?');">
+                    <button type="submit" class="btn btn-danger">Excluir Minha Conta</button>
+                </form>
+            </div>
+        </div>
+    </div>
+</div>
+{% endblock %}

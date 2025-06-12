@@ -1,0 +1,53 @@
+{% extends 'base.html' %}
+{% block title %}Frota de Veículos{% endblock %}
+
+{% block content %}
+<div class="d-flex justify-content-between align-items-center mb-4">
+    <h2 class="m-0 brand-font" style="color: var(--text-dark); font-size: 2.5rem;">Frota de Veículos</h2>
+    <a href="{{ url_for('main.adicionar_veiculo') }}" class="btn btn-primary">
+        <i class="bi bi-plus-circle-fill me-2"></i>Adicionar Veículo
+    </a>
+</div>
+
+<div class="card shadow-sm">
+    <div class="card-body">
+        <div class="table-responsive">
+            <table class="table table-hover align-middle">
+                <thead>
+                    <tr>
+                        <th scope="col">Placa</th>
+                        <th scope="col">Modelo</th>
+                        <th scope="col">Ano</th>
+                        <th scope="col" class="text-center">Ações</th>
+                    </tr>
+                </thead>
+                <tbody>
+                    {% for veiculo in veiculos %}
+                    <tr>
+                        <td><strong>{{ veiculo.placa }}</strong></td>
+                        <td>{{ veiculo.modelo }}</td>
+                        <td>{{ veiculo.ano }}</td>
+                        <td class="text-center">
+                            <a href="{{ url_for('main.listar_documentos', veiculo_id=veiculo.id) }}" class="btn btn-sm" style="background-color: var(--tan); color: var(--white);">
+                                <i class="bi bi-file-earmark-text-fill me-1"></i> Documentos
+                            </a>
+                            <a href="{{ url_for('main.editar_veiculo', id=veiculo.id) }}" class="btn btn-sm btn-outline-secondary">Editar</a>
+                            <form action="{{ url_for('main.deletar_veiculo', id=veiculo.id) }}" method="POST" class="d-inline" onsubmit="return confirm('Tem certeza que deseja deletar este veículo e todos os seus documentos?');">
+                                <button type="submit" class="btn btn-sm btn-danger">Deletar</button>
+                            </form>
+                        </td>
+                    </tr>
+                    {% else %}
+                    <tr>
+                        <td colspan="4" class="text-center py-4">
+                            <p class="mb-0">Nenhum veículo cadastrado ainda.</p>
+                            <small class="text-muted">Clique em "Adicionar Veículo" para começar.</small>
+                        </td>
+                    </tr>
+                    {% endfor %}
+                </tbody>
+            </table>
+        </div>
+    </div>
+</div>
+{% endblock %}

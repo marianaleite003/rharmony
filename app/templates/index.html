@@ -1,0 +1,15 @@
+{% extends 'base.html' %}
+{% block title %}Bem-vindo{% endblock %}
+{% block content %}
+<div class="container-fluid p-0">
+    <section class="hero-section text-center">
+        <div class="container d-flex flex-column justify-content-center" style="min-height: 80vh;">
+            <h1 class="display-3 fw-bold brand-font">RHarmony</h1>
+            <p class="lead col-lg-8 mx-auto">A sintonia perfeita para a gestão da sua transportadora.</p>
+            <div class="d-grid gap-2 d-sm-flex justify-content-sm-center mt-4">
+                <a href="{{ url_for('main.login') }}" class="btn btn-primary btn-lg px-4">Acessar Sistema</a>
+            </div>
+        </div>
+    </section>
+</div>
+{% endblock %}
